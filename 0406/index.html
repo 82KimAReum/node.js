@@ -1,0 +1,101 @@
+<!-- //index.html -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>welcome</title>
+    <link rel="stylesheet" href='css/style.css' type="text/css">
+    <script src="/js/jquery-1.12.4.js"></script>
+    <script>
+        $(document).ready(function(){
+            $('p:nth-of-type(1)>button').click(function(){
+                $.ajax({
+                    url:'/movies'
+                    //서버에게 요청될 url
+                    ,method:'get'
+                    ,success:function(data){
+                        console.log(data.movies);
+                    }
+                })
+            });
+            $('p:nth-of-type(2)>button').click(function(){
+                $.ajax({
+                    url:'/movies/'+ $('#movieid').val()
+                    ,method:'get'
+                    ,success:function(data){
+                        console.log(data);
+                    }
+
+                })
+            });
+            $('#btnPost').click(function(){
+                //alert('aaa');
+                var obj = {
+                    title : $('#title').val(),
+                    director : $('#director').val(),
+                    year : $('#year').val(),
+                    synopsis : $('#synopsis').val()
+                }
+                $.ajax({
+                    url : '/movies',
+                    method : 'post',
+                    dataType : 'json',
+                    data : {data : JSON.stringify(obj)},
+                    success : function(data){
+                        console.log(data.result);
+                    }
+                });
+            });
+            $('#btnDelete').click(function(){
+                //alert('aaa');
+            
+                $.ajax({
+                    url : '/movies/'+$('#id').val(),
+                    method : 'delete',
+                    success : function(data){
+                        console.log(data.result);
+                    }
+                });
+            });
+            $('#btnUpdate').click(function(){
+                var obj = {
+                    id:$('#id').val(),
+                    title : $('#title').val(),
+                    director : $('#director').val(),
+                    year : $('#year').val(),
+                    synopsis : $('#synopsis').val()
+                }
+                $.ajax({
+                    url : '/movies',
+                    method : 'put',
+                    dataType : 'json',
+                    data : {data : JSON.stringify(obj)},
+                    success : function(data){
+                        console.log(data.result);
+                    }
+                });
+            });
+        })
+    </script>
+</head>
+<body>
+    <h1>Express Hemo page</h1>
+    <!-- <img src='images/jimin.jpg'alt='지민'> -->
+    <p><button>show all</button></p>
+    <p><input type='text' id='movieid' placeholder="영화 id를 넣어주세요"><button>Show One</button></p>
+    <p>
+        <ul>
+            <li>ID:<input type="text"id='id'></li>
+            <li>Title:<input type="text"id='title'></li>
+            <li>Director:<input type="text"id='director'></li>
+            <li>Year:<input type="text"id='year'></li>
+            <li>Synopsis:<textarea id='synopsis'rows='5' cols='30'></textarea></li>
+        </ul><br>
+        <button id='btnPost'>post</button>id넣지 말것
+    </p>
+    <p><button id="btnDelete">DELETE</button></p>
+    <p><button id="btnUpdate">UPDATE</button></p>
+    
+</body>
+</html>

@@ -1,0 +1,27 @@
+extends layout
+
+block content
+  h1= title
+  p 회원 가입해 주세요.
+  form(id='joinForm', method='post', action='/join')
+    p
+      label(for='username') Name :
+      input(type='text', name='username', id='username')
+    p
+      label(for='useremail') Email :
+      input(type='text', name='useremail', id='useremail')
+    p
+      input(type='button', value='회원가입')
+  script.
+    $(document).ready(function(){
+      $("input[type='button']").click(function(){
+        if($('#username').val() == "" || $('#useremail').val() == ""){
+          alert('이름 또는 이메일의 값이 없습니다');
+          return false;
+        }
+        $('#joinForm').submit();
+      });
+    });  
+      
+      
+      

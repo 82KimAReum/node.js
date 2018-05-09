@@ -1,0 +1,52 @@
+extends layout
+
+block content
+  h1= title
+  div(id='container')
+    form(class="form-horizontal",action='/update/#{data.hakbun}',method='post')
+      div(class="form-group")
+        label(for="txtHakbun", class="col-sm-2 control-label") 학번
+        div(class="col-sm-6")
+          input(type="text", class="form-control", readonly="readonly", id="txtHakbun", name='txtHakbun', value='#{data.hakbun}')
+      div(class="form-group")
+        label(for="txtIrum", class="col-sm-2 control-label") 이름
+        div(class="col-sm-6")
+          input(type="text", class="form-control", readonly="readonly", id="txtIrum", name='txtIrum', value='#{data.irum}')
+      div(class="form-group")
+        label(for="txtKor", class="col-sm-2 control-label") 국어
+        div(class="col-sm-6")
+          input(type="text", class="form-control", id="txtIrum", name='txtKor', value='#{data.kor}')
+      div(class="form-group")
+        label(for="txtEng", class="col-sm-2 control-label") 영어
+        div(class="col-sm-6")
+          input(type="text", class="form-control", id="txtEng", name='txtEng', value='#{data.eng}')
+      div(class="form-group")
+        label(for="txtMat", class="col-sm-2 control-label") 수학
+        div(class="col-sm-6")
+          input(type="text", class="form-control", id="txtMat", name='txtMat', value='#{data.mat}')
+      div(class="form-group")
+        label(for="txtEdp", class="col-sm-2 control-label") 전산
+        div(class="col-sm-6")
+          input(type="text", class="form-control", id="txtEdp", name='txtEdp', value='#{data.edp}')
+      div(class="form-group")
+        label(for="txtTot", class="col-sm-2 control-label") 총점
+        div(class="col-sm-6")
+          input(type="text", class="form-control", readonly="readonly", id="txtTot", name='txtTot', value='#{data.tot}')
+      div(class="form-group")
+        label(for="txtAvg", class="col-sm-2 control-label") 평균
+        div(class="col-sm-6")
+          input(type="text", class="form-control", readonly="readonly", id="txtAvg", name='txtAvg', value='#{data.avg}')
+      div(class="form-group")
+        label(for="txtGrade", class="col-sm-2 control-label") 평점
+        div(class="col-sm-6")
+          input(type="text", class="form-control", readonly="readonly", id="txtGrade", name='txtGrade', value='#{data.grade}')                            
+      p
+        button(type="submit", class="col-sm-4 btn btn-primary") 수정
+        = " "
+        button(type="button", class="col-sm-4 btn btn-warning",onclick='javascript:history.back()') 뒤로 가기
+        = " "
+        button(type="button",id='btnDelete', class="col-sm-4 btn btn-danger") 삭제
+  script.
+    $('#btnDelete').click(function(){
+      location.href='/delete/#{data.hakbun}'
+    });

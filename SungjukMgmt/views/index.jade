@@ -1,0 +1,30 @@
+extends layout
+
+block content
+  h1= title
+  table(class='table')
+    tr
+      td 
+        a(href='/input') 새로 입력하기
+      td [#{count}명]
+      
+  table(class='table table-hover')
+    thead
+      tr
+       th 학번
+       th 이름
+       th 국어
+       th 영어
+       th 수학
+       th 전산
+    tbody
+      each item in data
+        tr
+          td 
+            a(href='/detail/#{item.hakbun}') #{item.hakbun}
+          td #{item.irum}
+          td #{item.kor}
+          td #{item.eng}
+          td #{item.mat}
+          td #{item.edp}
+          

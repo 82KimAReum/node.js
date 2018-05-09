@@ -1,0 +1,34 @@
+extends layout
+
+block content
+  h1= title
+  div(id='container')
+    form(class="form-horizontal",action='/insert', method='post')
+      div(class="form-group")
+        label(for="txtHakbun", class="col-sm-2 control-label") 학번
+        div(class="col-sm-6")
+          input(type="text", class="form-control", id="txtHakbun", name='txtHakbun', placeholder="학번을 입력해 주세요")
+      div(class="form-group")
+        label(for="txtIrum", class="col-sm-2 control-label") 이름
+        div(class="col-sm-6")
+          input(type="text", class="form-control", id="txtIrum", name='txtIrum', placeholder="이름을 입력해 주세요")
+      div(class="form-group")
+        label(for="txtKor", class="col-sm-2 control-label") 국어
+        div(class="col-sm-6")
+          input(type="text", class="form-control", id="txtIrum", name='txtKor', placeholder="국어점수를 입력해 주세요")
+      div(class="form-group")
+        label(for="txtEng", class="col-sm-2 control-label") 영어
+        div(class="col-sm-6")
+          input(type="text", class="form-control", id="txtEng", name='txtEng', placeholder="영어점수를 입력해 주세요")
+      div(class="form-group")
+        label(for="txtMat", class="col-sm-2 control-label") 수학
+        div(class="col-sm-6")
+          input(type="text", class="form-control", id="txtMat", name='txtMat', placeholder="수학점수를 입력해 주세요")
+      div(class="form-group")
+        label(for="txtEdp", class="col-sm-2 control-label") 전산
+        div(class="col-sm-6")
+          input(type="text", class="form-control", id="txtEdp", name='txtEdp', placeholder="전산점수를 입력해 주세요")                
+      p
+        button(type="submit", class="col-sm-4 btn btn-primary") 입력
+        = " "
+        button(type="reset", class="col-sm-4 btn btn-warning") 다시 작성

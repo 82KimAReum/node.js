@@ -1,0 +1,38 @@
+extends layout
+
+block content
+  h1= title
+  table(class='table')
+    tr
+      td 
+        a(href='/input') 새로 입력하기
+      td [#{count}명]
+      
+  table(class='table table-hover')
+    thead
+      tr
+       th 사번
+       th 부서
+       th 기본급
+       th 직무급
+       th 야근수당
+       th 가족수당
+       th 총지급액
+       th 소득세
+       th 실수령액
+       
+    tbody
+      each item in data
+        tr
+          td 
+            a(href='/detail/#{item.sa}') #{item.sa}
+          td #{item.bu}
+          td #{item.gi}
+          td #{item.jic}
+          td #{item.ya}
+          td #{item.ga}
+          td #{item.chong}
+          td #{item.so}
+          td #{item.sil}
+          
+          

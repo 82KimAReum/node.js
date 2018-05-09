@@ -1,0 +1,125 @@
+extends layout
+
+block content
+  h1= title
+  div
+   img(src='images/cgv.jpg',alt='welcome CGV')
+  
+  div
+   button GET ALL
+   =" "
+   input(type='text' id='movieid')
+   =" "
+   button GET ONE
+   =" "
+   button POST
+   =" "
+   button PUT
+   =" "
+   button DELETE
+   =" "
+  table
+   tr
+    th ID :
+    td 
+     input(type='text',id='id')
+   tr
+    th TITLE :
+    td 
+     input(type='text',id='title')
+   tr
+    th DIRECTOR :
+    td 
+     input(type='text',id='director')
+   tr
+    th YEAR :
+    td 
+     input(type='text',id='year')
+   tr
+    th SYNOPSIS :
+    td 
+     textarea(id='synopsis',cols=40,rows=5)
+  div(id='result')
+  script.
+    $('button:first()').click(function(){
+      $.ajax({
+        url : '/movies',
+        type : 'get',
+        success : function(data){
+          var str = '<table border="1">';
+          str += '<thead><tr><th>ID</th><th>Title</th><th>Director</th>';
+          str += '<th>Year</th></tr></thead><tbody>';
+          for(var i = 0 ; i < data.count ; i++){
+            var movie = data.movielist[i];
+            str += '<tr><td>' + movie.id + '</td><td>' + movie.title;
+            str += '</td><td>' + movie.director + '</td><td>' + movie.year;
+            str += '</td></tr>';
+          }
+          str += '</tbody></table>';
+          $('#result').html(str);
+        }
+      });
+    });
+    $('button:nth-of-type(2)').click(function(){
+      
+      $.ajax({
+        url:'/movies/'+$('#movieid').val(),
+        type:'get',
+        success:function(data){
+          //alert(data.title);
+          $('#id').val(data.id),
+          $('#title').val(data.title),
+          $('#director').val(data.director),
+          $('#year').val(data.year),
+          $('#synopsis').val(data.synopsis)
+          
+        }
+        
+      });
+    });
+    $('button:nth-of-type(3)').click(function(){
+     var moviedata={
+      title:$('#title').val(),
+      director:$('#director').val(),
+      year:$('#year').val(),
+      synopsis:$('#synopsis').val()
+     }
+     $.ajax({
+       url:'/movies',
+       type:'post',
+       dataType:'json',
+       data:{data: JSON.stringify(moviedata)},
+       success:function(data){
+         alert(data.result);
+       }
+     });
+    });
+    $('button:nth-of-type(4)').click(function(){
+      var moviedata={
+        id:$('#id').val(),
+        title:$('#title').val(),
+        director:$('#director').val(),
+        year:$('#year').val(),
+        synopsis:$('#synopsis').val()
+      }
+      $.ajax({
+        url:'/movies',
+        type:'put',
+        dataType:'json',
+        data:{data: JSON.stringify(moviedata)},
+        success:function(data){
+         alert(data.result);
+       }
+      });
+    
+    });
+    $('button:last()').click(function(){
+      $.ajax({
+        url:'/movies/' + $('#movieid').val(),
+        type:'delete',
+        success:function(data){
+        	alert(data.result);
+        }
+        
+      })
+    });

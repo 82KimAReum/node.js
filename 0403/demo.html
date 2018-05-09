@@ -1,0 +1,21 @@
+<!-- //demo.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <h2>귀하가 좋아하시는 영화 포스터를 올려주세요.</h2>
+    <form action = '/upload' method="post" enctype="multipart/form-data">
+        <!--enctype="multipart/form-data" 데이터 보낼때는 이걸로 해야함 -->
+        Name: <input type='text'name='username'><br>
+        Image: <input type="file"name='userimg'><br>
+        <input type="submit"value='전송'>
+    </form>
+    <hr />
+    
+</body>
+</html>
